@@ -1,0 +1,183 @@
+{
+  "info": {
+    "name": "Twitter Clone API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "twitter-clone-api-collection"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000" },
+    { "key": "auth_token", "value": "" },
+    { "key": "user_id", "value": "" },
+    { "key": "tweet_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base_url}}/api/auth/register", "host": ["{{base_url}}"], "path": ["api", "auth", "register"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"passwordConfirmation\": \"password123\",\n  \"displayName\": \"Test User\"\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200 || pm.response.code === 201) {",
+              "  const response = pm.response.json();",
+              "  pm.environment.set('auth_token', response.token);",
+              "  pm.environment.set('user_id', response.user.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base_url}}/api/auth/login", "host": ["{{base_url}}"], "path": ["api", "auth", "login"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"emailOrUsername\": \"testuser\",\n  \"password\": \"password123\"\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200 || pm.response.code === 201) {",
+              "  const response = pm.response.json();",
+              "  pm.environment.set('auth_token', response.token);",
+              "  pm.environment.set('user_id', response.user.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Current User",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/api/auth/me", "host": ["{{base_url}}"], "path": ["api", "auth", "me"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Tweet",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/api/tweets", "host": ["{{base_url}}"], "path": ["api", "tweets"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"Hello world! This is my first tweet with @mention\"\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "  const response = pm.response.json();",
+              "  pm.environment.set('tweet_id', response.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get All Tweets",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/api/tweets", "host": ["{{base_url}}"], "path": ["api", "tweets"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Timeline",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/api/tweets/timeline", "host": ["{{base_url}}"], "path": ["api", "tweets", "timeline"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Tweets",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/api/tweets/user/{{user_id}}", "host": ["{{base_url}}"], "path": ["api", "tweets", "user", "{{user_id}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Tweet",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{base_url}}/api/tweets/{{tweet_id}}", "host": ["{{base_url}}"], "path": ["api", "tweets", "{{tweet_id}}"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"Updated tweet content with new @mentions\"\n}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Tweet",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/api/tweets/{{tweet_id}}", "host": ["{{base_url}}"], "path": ["api", "tweets", "{{tweet_id}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Mentions",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/api/mentions", "host": ["{{base_url}}"], "path": ["api", "mentions"] }
+      },
+      "response": []
+    }
+  ]
+}
