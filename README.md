@@ -12,7 +12,7 @@ These instructions are for **all users**, whether you are new to Codespaces or a
 
 ### 1. Open the Project in GitHub Codespaces
 
-- On GitHub, click the **Code** button and choose **byte-hapiness** or **Create codespace on main** (or your branch).
+- On GitHub, click the **Code** button and choose **byte-happiness** or **Create codespace on main** (or your branch).
 - Wait for the Codespace to initialize. All dependencies will be installed automatically.
 
 ---
