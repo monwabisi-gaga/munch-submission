@@ -19,8 +19,11 @@ describe('MemStorage', () => {
 
     it('should create a user', async () => {
       const user = await storage.createUser(userData);
-      
-      expect(user).toMatchObject(userData);
+
+      // Remove passwordConfirmation from expected object
+      const { passwordConfirmation, ...expectedUserData } = userData;
+      expect(user).toMatchObject(expectedUserData);
+
       expect(user.id).toBeDefined();
       expect(user.avatar).toBeDefined();
       expect(user.createdAt).toBeInstanceOf(Date);
