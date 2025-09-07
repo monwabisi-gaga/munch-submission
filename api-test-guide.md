@@ -6,7 +6,7 @@ This guide provides comprehensive testing instructions for all API endpoints wit
 
 ### 1. User Registration
 
-**Endpoint:** `POST /api/auth/register`
+**Endpoint:** `POST /api/auth/register`  
 **Content-Type:** `application/json`
 
 ```bash
@@ -16,6 +16,7 @@ curl -X POST http://localhost:5000/api/auth/register \
     "username": "testuser",
     "email": "test@example.com", 
     "password": "password123",
+    "passwordConfirmation": "password123",
     "displayName": "Test User"
   }'
 ```
@@ -36,7 +37,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 
 ### 2. User Login
 
-**Endpoint:** `POST /api/auth/login`
+**Endpoint:** `POST /api/auth/login`  
 **Content-Type:** `application/json`
 
 ```bash
@@ -50,7 +51,7 @@ curl -X POST http://localhost:5000/api/auth/login \
 
 ### 3. Get Current User Info
 
-**Endpoint:** `GET /api/auth/me`
+**Endpoint:** `GET /api/auth/me`  
 **Authorization:** `Bearer {token}`
 
 ```bash
@@ -60,8 +61,8 @@ curl -X GET http://localhost:5000/api/auth/me \
 
 ### 4. Create Tweet (CREATE)
 
-**Endpoint:** `POST /api/tweets`
-**Authorization:** `Bearer {token}`
+**Endpoint:** `POST /api/tweets`  
+**Authorization:** `Bearer {token}`  
 **Content-Type:** `application/json`
 
 ```bash
@@ -79,15 +80,20 @@ curl -X POST http://localhost:5000/api/tweets \
   "id": "tweet-uuid",
   "content": "Hello world! This is my first tweet with @mention",
   "authorId": "user-uuid",
+  "parentTweetId": null,
+  "isRetweet": false,
+  "originalTweetId": null,
+  "mediaUrls": null,
+  "hashtags": null,
   "createdAt": "2024-01-01T00:00:00.000Z",
-  "replyCount": 0,
-  "retweetCount": 0,
-  "likeCount": 0,
+  "updatedAt": "2024-01-01T00:00:00.000Z",
+  "deletedAt": null,
   "author": {
     "id": "user-uuid",
     "username": "testuser",
+    "email": "test@example.com",
     "displayName": "Test User",
-    "avatar": "..."
+    "avatar": "https://images.unsplash.com/..."
   },
   "mentions": ["mention"]
 }
@@ -95,7 +101,7 @@ curl -X POST http://localhost:5000/api/tweets \
 
 ### 5. Get All Tweets (READ)
 
-**Endpoint:** `GET /api/tweets`
+**Endpoint:** `GET /api/tweets`  
 **Authorization:** `Bearer {token}`
 
 ```bash
@@ -105,7 +111,7 @@ curl -X GET http://localhost:5000/api/tweets \
 
 ### 6. Get User Timeline
 
-**Endpoint:** `GET /api/tweets/timeline`
+**Endpoint:** `GET /api/tweets/timeline`  
 **Authorization:** `Bearer {token}`
 
 ```bash
@@ -115,7 +121,7 @@ curl -X GET http://localhost:5000/api/tweets/timeline \
 
 ### 7. Get Specific User's Tweets
 
-**Endpoint:** `GET /api/tweets/user/{userId}`
+**Endpoint:** `GET /api/tweets/user/{userId}`  
 **Authorization:** `Bearer {token}`
 
 ```bash
@@ -125,8 +131,8 @@ curl -X GET http://localhost:5000/api/tweets/user/USER_ID_HERE \
 
 ### 8. Update Tweet (UPDATE)
 
-**Endpoint:** `PUT /api/tweets/{tweetId}`
-**Authorization:** `Bearer {token}`
+**Endpoint:** `PUT /api/tweets/{tweetId}`  
+**Authorization:** `Bearer {token}`  
 **Content-Type:** `application/json`
 
 ```bash
@@ -140,7 +146,7 @@ curl -X PUT http://localhost:5000/api/tweets/TWEET_ID_HERE \
 
 ### 9. Delete Tweet (DELETE)
 
-**Endpoint:** `DELETE /api/tweets/{tweetId}`
+**Endpoint:** `DELETE /api/tweets/{tweetId}`  
 **Authorization:** `Bearer {token}`
 
 ```bash
@@ -150,7 +156,7 @@ curl -X DELETE http://localhost:5000/api/tweets/TWEET_ID_HERE \
 
 ### 10. Get User Mentions
 
-**Endpoint:** `GET /api/mentions`
+**Endpoint:** `GET /api/mentions`  
 **Authorization:** `Bearer {token}`
 
 ```bash
@@ -250,5 +256,5 @@ if (pm.response.code === 201) {
 3. **Social Features:**
    - View all tweets (public feed)
    - View personal timeline
-   - View user-specific tweets
-   - Check mentions
+   - View user specific tweets
+   - View mentions
