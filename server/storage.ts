@@ -137,6 +137,18 @@ export class MemStorage implements IStorage {
       deletedAt: null
     };
     this.tweets.set(id, tweet);
+
+    // Initialize tweet stats
+    this.tweetStats.set(id, {
+      tweetId: id,
+      replyCount: 0,
+      retweetCount: 0,
+      likeCount: 0,
+      bookmarkCount: 0,
+      impressionCount: 0,
+      updatedAt: new Date(),
+    });
+
     return tweet;
   }
 
