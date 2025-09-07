@@ -12,7 +12,7 @@ These instructions are for **all users**, whether you are new to Codespaces or a
 
 ### 1. Open the Project in GitHub Codespaces
 
-- On GitHub, click the **Code** button and choose **Create codespace on main** (or your branch).
+- On GitHub, click the **Code** button and choose **byte-hapiness** or **Create codespace on main** (or your branch).
 - Wait for the Codespace to initialize. All dependencies will be installed automatically.
 
 ---
@@ -79,15 +79,7 @@ $BROWSER https://<your-codespace-id>-5000.app.github.dev
 
 ---
 
-### 8. Troubleshooting
-
-- If you change code or dependencies, stop and re-run the server using the **Run & Debug** button.
-- If you get connection errors, make sure the server is running and you are using the correct Codespace URL in Postman.
-- Data is stored in-memory and will reset if the server restarts.
-
----
-
-### 9. More Info
+### 8. More Info
 
 - See [`api-test-guide.md`](api-test-guide.md) for detailed endpoint usage and example payloads.
 - The API endpoints include:
@@ -106,4 +98,7 @@ $BROWSER https://<your-codespace-id>-5000.app.github.dev
 
 ## Support
 
-For questions, open an issue or ask in
+For questions, open an issue pop me a mail. 
+
+***Best,
+  mo***
