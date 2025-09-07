@@ -19,11 +19,9 @@ These instructions are for **all users**, whether you are new to Codespaces or a
 
 ### 2. Start the API Server (Use the "Run & Debug" Button)
 
-**Do not** start the server manually in the terminal.
+start the server manually in the terminal by running `npm run dev`
 
-- In the Codespaces IDE (VS Code in the browser), look for the "Run & Debug" panel on the left (play icon or `Ctrl+Shift+D`).
-- Click the green **Run** or **Start Debugging** button.
-- The server will start automatically on port `5000`.
+- The server will start on port `5000`.
 - You will see a notification or a "Ports" tab showing a forwarded URL like:  
   `https://<your-codespace-id>-5000.app.github.dev`
 
