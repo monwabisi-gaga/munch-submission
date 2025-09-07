@@ -4,7 +4,7 @@ export default {
   roots: ['<rootDir>/tests'],
   testMatch: ['**/*.test.ts'],
   extensionsToTreatAsEsm: ['.ts'],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@shared/(.*)$': '<rootDir>/shared/$1',
     '^../server/(.*)$': '<rootDir>/server/$1',
     '^../shared/(.*)$': '<rootDir>/shared/$1'
@@ -31,6 +31,5 @@ export default {
       lines: 90,
       statements: 90
     }
-  },
-  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts']
-};
+  }
+}
