@@ -5,7 +5,8 @@ import { insertUserSchema, loginSchema, insertTweetSchema } from "@shared/schema
 import { hashPassword, comparePassword, generateToken, authenticateToken, type AuthenticatedRequest } from "./middleware/auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-    app.post("/api/auth/register", async (req, res) => {
+  // Auth routes
+  app.post("/api/auth/register", async (req, res) => {
     try {
       const userData = insertUserSchema.parse(req.body);
       
