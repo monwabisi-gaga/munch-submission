@@ -33,6 +33,12 @@ start the server manually in the terminal by running `npm run dev`
 - Find the row for port `5000` and copy the **HTTPS** URL.
 - This is your API base URL (e.g., `https://<your-codespace-id>-5000.app.github.dev`).
 
+- alternatively you can clone the repo and run:
+- `npm install`
+- `npm run dev`
+- The above commands will start the server on port `5000` on your localhost.
+
+
 ---
 
 ### 4. Import the Postman Collection
